@@ -1,0 +1,10 @@
+Time resolution is 1 ps
+ERROR at time 165000: got xx, expected 8
+ERROR at time 225000: got 1, expected 2
+ERROR at time 255000: got 2, expected 3
+ERROR at time 285000: got 3, expected 4
+ERROR at time 315000: got 4, expected 5
+ERROR at time 345000: got 5, expected 6
+ERROR at time 375000: got 6, expected 7
+ERROR at time 405000: got 7, expected 8
+$finish called at time : 455 ns : File "D:/vivado_projects/Project_A/Project_A.srcs/sim_1/new/async_fifo_tb.v" Line 64
