@@ -16,16 +16,16 @@ module fifo_mem #(
     output reg  [DATA_WIDTH-1:0] data_out
 );
 
-  // Memory array
+
   reg [DATA_WIDTH-1:0] mem [0:DEPTH-1];
 
-  // Write logic
+
   always @(posedge wclk) begin
     if (w_en & ~full)
       mem[b_wptr[PTR_WIDTH-1:0]] <= data_in;
   end
 
-  // Read logic (registered output)
+ 
   always @(posedge rclk) begin
     if (r_en & ~empty)
       data_out <= mem[b_rptr[PTR_WIDTH-1:0]];
