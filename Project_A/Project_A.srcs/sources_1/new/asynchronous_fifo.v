@@ -17,12 +17,12 @@ module asynchronous_fifo #(
 
   localparam PTR_WIDTH = $clog2(DEPTH);
 
-  // Internal pointers and synchronization
+ 
   wire [PTR_WIDTH:0] g_wptr, b_wptr;
   wire [PTR_WIDTH:0] g_rptr, b_rptr;
   wire [PTR_WIDTH:0] g_wptr_sync, g_rptr_sync;
 
-  // Instantiate synchronizers for Gray pointers
+ 
   synchronizer #(.WIDTH(PTR_WIDTH)) sync_wptr (
     .clk(rclk), .rst_n(rrst_n), .d_in(g_wptr), .d_out(g_wptr_sync)
   );
@@ -31,7 +31,7 @@ module asynchronous_fifo #(
     .clk(wclk), .rst_n(wrst_n), .d_in(g_rptr), .d_out(g_rptr_sync)
   );
 
-  // Pointer handlers
+ 
   wptr_handler #(.PTR_WIDTH(PTR_WIDTH)) wptr_h (
     .wclk(wclk), .rst_n(wrst_n), .w_en(w_en), .g_rptr_sync(g_rptr_sync),
     .b_wptr(b_wptr), .g_wptr(g_wptr), .full(full)
@@ -41,22 +41,8 @@ module asynchronous_fifo #(
     .rclk(rclk), .rst_n(rrst_n), .r_en(r_en), .g_wptr_sync(g_wptr_sync),
     .b_rptr(b_rptr), .g_rptr(g_rptr), .empty(empty)
   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-  // Memory block
+  
   fifo_mem #(
     .DEPTH(DEPTH), .DATA_WIDTH(DATA_WIDTH), .PTR_WIDTH(PTR_WIDTH)
   ) mem_inst (
